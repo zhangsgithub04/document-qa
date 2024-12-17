@@ -59,7 +59,7 @@ else:
         messages = [
             {
                 "role": "user",
-                "content": f"Here's a document: {document} \n\n---\n\n Please generate {numofquestion} short answer questions with reference answers",
+                "content": f"Give the document: {document} \n\n---\n\n Please analyze the document and generate {numofquestion} short answer questions with reference answers",
             }
         ]
 
