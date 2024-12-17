@@ -42,23 +42,28 @@ else:
         disabled=not uploaded_file,
     )
 
+    # Button to trigger question generation
     if uploaded_file and question:
+        if st.button("Generate Questions"):
+            # Process the uploaded file and question.
+            document = uploaded_file.read().decode()
+            messages = [
+                {
+                    "role": "user",
+                    "content": f"Here's a document: {document} \n\n---\n\n Please generate {question} short answer questions with reference answers",
+                }
+            ]
 
-        # Process the uploaded file and question.
-        document = uploaded_file.read().decode()
-        messages = [
-            {
-                "role": "user",
-                "content": f"Here's a document: {document} \n\n---\n\n Please generate {question} short answer questions with reference answers",
-            }
-        ]
+            # Generate an answer using the OpenAI API.
+            stream = client.chat.completions.create(
+                model="gpt-3.5-turbo",
+                messages=messages,
+                stream=True,
+            )
 
-        # Generate an answer using the OpenAI API.
-        stream = client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=messages,
-            stream=True,
-        )
-
-        # Stream the response to the app using `st.write_stream`.
-        st.write_stream(stream)
+            # Stream the response to the app using `st.write_stream`.
+            st.write_stream(stream)
+        else:
+            st.write("Click the 'Generate Questions' button to create questions.")
+    else:
+        st.write("Please upload a file and enter the number of questions to generate.")
