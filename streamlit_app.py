@@ -3,10 +3,10 @@ from openai import OpenAI
 import os
 
 # Show title and description.
-st.title("📄 Document question answering")
+st.title("📄 Question Generator")
 st.write(
     "Ques "
-    "To use this app, you need to provide an OpenAI API key, which you can get [here](https://platform.openai.com/account/api-keys). "
+    "Your feedback will be helpful. "
 )
 
 # Ask user for their OpenAI API key via `st.text_input`.
@@ -31,8 +31,8 @@ else:
 
     # Ask the user for a question via `st.text_area`.
     question = st.text_area(
-        "Now ask a question about the document!",
-        placeholder="Can you give me a short summary?",
+        "How many questions do you want to generate",
+        placeholder="10",
         disabled=not uploaded_file,
     )
 
@@ -43,7 +43,7 @@ else:
         messages = [
             {
                 "role": "user",
-                "content": f"Here's a document: {document} \n\n---\n\n {question}",
+                "content": f"Here's a document: {document} \n\n---\n\n Please generate {question} short answer questions with reference answers",
             }
         ]
 
