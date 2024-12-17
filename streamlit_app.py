@@ -36,7 +36,7 @@ else:
             st.write(uploaded_file.read().decode())
 
     # Ask the user for a question via `st.text_area`.
-    question = st.text_area(
+    numofquestion = st.text_area(
         "How many questions do you want to generate",
         placeholder="10",
         disabled=not uploaded_file,
@@ -44,7 +44,7 @@ else:
 
     # Button to trigger question generation
     if uploaded_file:
-        if question:
+        if numofquestion:
             generate_button = st.button("Generate Questions")
         else:
             st.warning("Please enter the number of questions to generate.")
@@ -59,7 +59,7 @@ else:
         messages = [
             {
                 "role": "user",
-                "content": f"Here's a document: {document} \n\n---\n\n Please generate {question} short answer questions with reference answers",
+                "content": f"Here's a document: {document} \n\n---\n\n Please generate {numofquestion} short answer questions with reference answers",
             }
         ]
 
