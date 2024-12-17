@@ -29,6 +29,12 @@ else:
         "Upload a document (.txt or .md)", type=("txt", "md")
     )
 
+    # Display uploaded file name and content
+    if uploaded_file:
+        st.write(f"**Uploaded File:** {uploaded_file.name}")
+        with st.expander("View File Content"):
+            st.write(uploaded_file.read().decode())
+
     # Ask the user for a question via `st.text_area`.
     question = st.text_area(
         "How many questions do you want to generate",
