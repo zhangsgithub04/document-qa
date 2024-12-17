@@ -56,6 +56,7 @@ else:
     if generate_button:
         # Process the uploaded file and question.
         document = uploaded_file.read().decode()
+        st.write(document)
         messages = [
             {
                 "role": "user",
